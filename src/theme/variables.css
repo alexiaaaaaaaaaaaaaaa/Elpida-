@@ -1,0 +1,13 @@
+:root {
+  --elpida-bg: #f0edda;
+  --elpida-bg-alt: #e1dfd4;
+  --elpida-purple: #44175a;
+  --elpida-purple-header: #613a7e;
+  --elpida-green: #2b4439;
+  --elpida-green-header: #6c8c7d;
+  --elpida-accent: #9d4e95;
+  --elpida-lavender: #796aaa;
+  --elpida-text: #444444;
+  --elpida-text-soft: #e1dfd4;
+  --font-main: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,2258 @@
+* {
+  box-sizing: border-box;
+}
+
+@keyframes elpida-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.elpida-spin {
+  animation: elpida-spin 1s linear infinite;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--elpida-text);
+  color: var(--elpida-text);
+  min-height: 100%;
+}
+
+/* ==========================================================
+   Moldura no tamanho lógico do iPhone 16 Pro (393 x 852 pt).
+   Em telas maiores, o app fica centralizado nessa largura fixa
+   (como se fosse a tela de um celular). Em telas menores,
+   ocupa 100% da largura disponível — totalmente responsivo.
+   ========================================================== */
+.elpida-viewport {
+  width: 100%;
+  max-width: 393px;
+  min-height: 852px;
+  margin: 0 auto;
+  background: var(--elpida-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (min-width: 394px) {
+  .elpida-viewport {
+    min-height: 100vh;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  font-family: inherit;
+}
+
+/* ==========================================================
+   Botões genéricos
+   ========================================================== */
+.elpida-btn {
+  border: none;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 19px;
+  height: 58px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0 22px;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.15s ease;
+}
+
+.elpida-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.elpida-btn:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.elpida-btn--primary {
+  background: var(--elpida-purple);
+  color: #fff;
+}
+
+.elpida-btn--secondary {
+  background: var(--elpida-green);
+  color: var(--elpida-text-soft);
+}
+
+.elpida-btn-row {
+  display: flex;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-btn-sm {
+  flex: 1;
+  height: 48px;
+  border-radius: 24px;
+  border: none;
+  background: var(--elpida-green);
+  color: var(--elpida-text-soft);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================
+   Telas de autenticação (Login / Cadastro / Configurar conta)
+   ========================================================== */
+.elpida-card {
+  position: relative;
+  min-height: 100%;
+  background: var(--elpida-bg);
+  overflow: hidden;
+  padding: 0 28px 48px;
+}
+
+.elpida-top-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 168px;
+  background: var(--elpida-purple);
+  border-bottom-left-radius: 50% 60px;
+  border-bottom-right-radius: 50% 60px;
+  z-index: 0;
+}
+
+.elpida-logo-badge {
+  position: relative;
+  z-index: 2;
+  width: 108px;
+  height: 108px;
+  margin: 40px auto 8px;
+  border-radius: 50%;
+  background: var(--elpida-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.elpida-logo-badge .brand {
+  font-weight: 800;
+  color: var(--elpida-purple);
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.elpida-logo-badge .brand-sub {
+  font-weight: 600;
+  color: var(--elpida-accent);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.elpida-title {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  color: var(--elpida-purple);
+  margin: 28px 0 24px;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.elpida-title--green {
+  color: var(--elpida-green);
+}
+
+.elpida-title--center {
+  text-align: center;
+}
+
+.elpida-field {
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-field label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.elpida-input-wrap {
+  position: relative;
+  border: 2px solid var(--elpida-purple);
+  border-radius: 40px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.elpida-input-wrap input,
+.elpida-input-wrap select {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  padding: 14px 44px 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--elpida-text);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.elpida-input-wrap select {
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.elpida-eye-btn,
+.elpida-select-chevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--elpida-purple);
+  pointer-events: none;
+}
+
+.elpida-eye-btn {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.elpida-inline-link {
+  font-size: 13px;
+  color: var(--elpida-text);
+  text-align: right;
+  margin: -10px 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-inline-link a,
+.elpida-link {
+  color: var(--elpida-accent);
+  font-weight: 700;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.elpida-bottom-text {
+  text-align: center;
+  margin-top: 26px;
+  font-size: 14px;
+  color: var(--elpida-text);
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--elpida-text);
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-divider::before,
+.elpida-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #444;
+  opacity: 0.5;
+}
+
+.elpida-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 24px;
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  color: var(--elpida-text);
+}
+
+.elpida-checkbox-row input[type='checkbox'] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--elpida-purple);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.elpida-blob {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 130px;
+  height: 90px;
+  background: var(--elpida-accent);
+  opacity: 0.55;
+  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  z-index: 0;
+}
+
+.elpida-blob--top-right {
+  top: -40px;
+  right: -40px;
+  left: auto;
+  bottom: auto;
+  background: var(--elpida-purple);
+  opacity: 1;
+  width: 220px;
+  height: 190px;
+  border-radius: 0 0 0 60%;
+}
+
+.elpida-avatar-wrap {
+  position: relative;
+  z-index: 1;
+  width: 172px;
+  height: 172px;
+  margin: 8px auto 20px;
+}
+
+.elpida-avatar {
+  width: 172px;
+  height: 172px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--elpida-bg);
+  box-shadow: 0 0 0 3px var(--elpida-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e7d9e4;
+  color: var(--elpida-purple);
+  font-weight: 700;
+}
+
+.elpida-avatar-edit {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--elpida-bg);
+  border: 2px solid var(--elpida-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-range {
+  width: 100%;
+  accent-color: var(--elpida-green);
+  height: 24px;
+}
+
+.elpida-age-value {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 6px;
+  color: #000;
+}
+
+/* ==========================================================
+   Shell geral das telas internas do app
+   ========================================================== */
+.elpida-app-screen {
+  position: relative;
+  min-height: 100vh;
+  background: var(--elpida-bg-alt);
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.elpida-app-header {
+  background: var(--elpida-purple);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.elpida-app-header__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+.elpida-app-header__text .greeting {
+  font-size: 12px;
+  color: var(--elpida-bg);
+  opacity: 0.9;
+  display: block;
+}
+
+.elpida-app-header__text .name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--elpida-bg);
+}
+
+.elpida-app-header__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.elpida-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(240, 237, 218, 0.18);
+  border: none;
+  color: var(--elpida-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.elpida-section {
+  padding: 24px 20px 4px;
+}
+
+.elpida-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.elpida-section__title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1c1c1c;
+  margin: 0;
+}
+
+.elpida-section__link {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c1c1c;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+.elpida-category-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.elpida-category {
+  text-decoration: none;
+  text-align: center;
+  color: #1c1c1c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+}
+
+.elpida-category__circle {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--elpida-green-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c1c1c;
+}
+
+.elpida-category__label {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.elpida-news-card {
+  display: flex;
+  gap: 10px;
+  padding: 12px 0;
+  align-items: flex-start;
+}
+
+.elpida-news-card__thumb {
+  width: 92px;
+  height: 72px;
+  border-radius: 14px;
+  background: #b8b3a0;
+  flex-shrink: 0;
+}
+
+.elpida-news-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.elpida-news-card__source {
+  font-size: 11px;
+  font-weight: 800;
+  color: #1c1c1c;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.elpida-news-card__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 6px;
+}
+
+.elpida-news-card__cta {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--elpida-green);
+  border-radius: 20px;
+  padding: 5px 12px;
+  display: inline-block;
+  border: none;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+.elpida-bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 393px;
+  bottom: 0;
+  background: rgba(225, 223, 212, 0.96);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 6px calc(10px + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+}
+
+.elpida-bottom-nav a {
+  color: var(--elpida-purple-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 40px;
+  text-decoration: none;
+}
+
+.elpida-bottom-nav a.active {
+  color: var(--elpida-green-header);
+}
+
+.elpida-chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 20px 4px;
+  scrollbar-width: none;
+}
+
+.elpida-chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.elpida-chip {
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: #7d9686;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.elpida-chip.active {
+  background: var(--elpida-lavender);
+}
+
+.elpida-book-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 16px 20px 24px;
+}
+
+.elpida-book-card {
+  border-radius: 14px;
+  padding: 10px;
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.elpida-book-card__cover {
+  width: 100%;
+  aspect-ratio: 137 / 200;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.elpida-book-card__desc {
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.elpida-book-card__badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.elpida-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: none;
+  width: 100%;
+  text-align: left;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.elpida-list-item__name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1c1c1c;
+  margin: 0 0 2px;
+}
+
+.elpida-list-item__preview {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.elpida-empty-state {
+  text-align: center;
+  padding: 60px 32px 20px;
+}
+
+.elpida-empty-state__icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #d8cbe6;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--elpida-purple);
+}
+
+.elpida-empty-state h2 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #1c1c1c;
+  margin: 0 0 10px;
+}
+
+.elpida-empty-state p {
+  font-size: 13px;
+  color: #555;
+  margin: 0 0 22px;
+}
+
+.elpida-empty-state button {
+  background: var(--elpida-purple);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 28px;
+  font-weight: 700;
+}
+
+.elpida-profile-handle {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.elpida-profile-handle__name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1c1c1c;
+  margin: 0;
+}
+
+.elpida-profile-handle__role {
+  font-size: 12px;
+  color: var(--elpida-purple);
+  font-weight: 700;
+  margin: 2px 0 0;
+}
+
+.elpida-profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin: 18px 0;
+  text-align: center;
+}
+
+.elpida-profile-stats__value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--elpida-green);
+  margin: 0;
+}
+
+.elpida-profile-stats__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--elpida-green-header);
+  margin: 2px 0 0;
+}
+
+.elpida-profile-actions {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.elpida-profile-actions button {
+  flex: 1;
+  height: 38px;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: var(--elpida-purple-header);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.elpida-profile-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 22px 0 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.elpida-profile-tabs button {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  padding-bottom: 10px;
+}
+
+.elpida-profile-tabs button.active {
+  color: #5f3b7d;
+  border-bottom: 3px solid #5f3b7d;
+}
+
+.elpida-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px 20px 24px;
+}
+
+.elpida-profile-grid__item {
+  aspect-ratio: 266 / 261;
+  border-radius: 10px;
+  border: 3px solid var(--elpida-green-header);
+  background: #cfd9d2;
+}
+
+.elpida-security-card {
+  position: relative;
+  min-height: 100%;
+  background: var(--elpida-bg);
+  overflow: hidden;
+  padding: 28px 24px 40px;
+  box-sizing: border-box;
+}
+
+.elpida-security-illustration {
+  margin: 30px auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--elpida-purple);
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-security-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--elpida-green);
+  text-align: center;
+  margin: 0 0 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-security-copy {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================
+   Cabeçalho: botões creme (busca / notificações / menu)
+   ========================================================== */
+.elpida-app-header__actions .elpida-icon-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--elpida-bg-alt);
+  color: var(--elpida-purple);
+  position: relative;
+}
+
+.elpida-app-header__actions {
+  gap: 8px;
+}
+
+.elpida-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #d6336c;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--elpida-purple);
+  box-sizing: content-box;
+}
+
+.elpida-back {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(240, 237, 218, 0.22);
+  color: var(--elpida-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+
+.elpida-logo .brand {
+  font-weight: 800;
+  color: var(--elpida-purple);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.elpida-logo .brand-sub {
+  font-weight: 600;
+  color: var(--elpida-accent);
+  letter-spacing: 1px;
+}
+
+.elpida-splash {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--elpida-bg);
+}
+
+.elpida-form {
+  padding: 8px 28px 32px;
+}
+
+.elpida-form-error {
+  color: #a13939;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  margin: -12px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.elpida-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 84px;
+  background: rgba(28, 28, 28, 0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 20px;
+  z-index: 40;
+}
+
+/* ==========================================================
+   Título de página (pílula verde) e listas
+   ========================================================== */
+.elpida-page-title-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 20px 10px;
+}
+
+.elpida-page-title-row__back {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(68, 23, 90, 0.1);
+  color: var(--elpida-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-page-title {
+  margin: 0;
+  background: var(--elpida-green-header);
+  color: var(--elpida-bg);
+  font-size: 17px;
+  font-weight: 800;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-align: center;
+  max-width: calc(100% - 96px);
+}
+
+.elpida-map-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 20px 0;
+}
+
+.elpida-map-toolbar p {
+  flex: 1;
+  margin: 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.elpida-map-refresh {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--elpida-purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================
+   Painéis: busca, notificações e menu lateral
+   ========================================================== */
+@keyframes elpida-slide-down {
+  from {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes elpida-slide-left {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.elpida-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 393px;
+  z-index: 50;
+}
+
+.elpida-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 8, 30, 0.55);
+}
+
+.elpida-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 82%;
+  display: flex;
+  flex-direction: column;
+  background: var(--elpida-bg);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  animation: elpida-slide-down 0.18s ease-out;
+}
+
+.elpida-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 6px;
+}
+
+.elpida-sheet__head h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--elpida-purple);
+}
+
+.elpida-sheet__head button {
+  border: none;
+  background: rgba(68, 23, 90, 0.1);
+  color: var(--elpida-purple);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-sheet__body {
+  overflow-y: auto;
+  padding: 4px 16px 18px;
+}
+
+.elpida-sheet__hint {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  margin: 8px 2px 10px;
+}
+
+.elpida-sheet__link {
+  width: 100%;
+  border: none;
+  background: none;
+  color: var(--elpida-accent);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 0 0;
+}
+
+.elpida-sheet__link:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.elpida-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 16px 6px;
+  padding: 10px 14px;
+  border: 2px solid var(--elpida-purple);
+  border-radius: 30px;
+  color: var(--elpida-purple);
+}
+
+.elpida-search-bar input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--elpida-text);
+}
+
+.elpida-search-bar button {
+  border: none;
+  background: none;
+  color: var(--elpida-purple);
+  display: flex;
+  padding: 0;
+}
+
+.elpida-result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  background: none;
+  padding: 12px 2px;
+  color: var(--elpida-purple);
+}
+
+.elpida-result__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.elpida-result__text strong {
+  font-size: 14px;
+  color: #1c1c1c;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.elpida-result__text small {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.35;
+}
+
+.elpida-result--notif {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.elpida-result--notif.read strong {
+  font-weight: 600;
+  color: #555;
+}
+
+.elpida-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #d6336c;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.elpida-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 68%;
+  background: var(--elpida-purple);
+  color: var(--elpida-bg);
+  padding: 16px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: auto;
+  animation: elpida-slide-left 0.2s ease-out;
+}
+
+.elpida-drawer__close {
+  border: none;
+  background: rgba(240, 237, 218, 0.15);
+  color: var(--elpida-bg);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-drawer__user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 4px;
+  margin: 18px 0 14px;
+}
+
+.elpida-drawer__name {
+  margin: 6px 0 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.elpida-drawer__meta {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.elpida-drawer__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.elpida-drawer__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 4px;
+  color: rgba(240, 237, 218, 0.85);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(240, 237, 218, 0.12);
+  width: 100%;
+  text-align: right;
+}
+
+.elpida-drawer__item.active {
+  color: #fff;
+}
+
+.elpida-drawer__item.active svg {
+  color: #b7d3c6;
+}
+
+.elpida-drawer__item.danger {
+  color: #ffb3b3;
+  border-bottom: none;
+}
+
+/* ==========================================================
+   Biblioteca: prateleiras, capas e detalhe do livro
+   ========================================================== */
+.elpida-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px 14px 16px;
+  background: var(--elpida-bg);
+}
+
+.elpida-shelf--alt {
+  background: var(--elpida-purple-header);
+}
+
+.elpida-shelf__book {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.elpida-shelf__panel {
+  margin-top: 6px;
+  border-radius: 8px;
+  padding: 6px 7px;
+  min-height: 76px;
+}
+
+.elpida-shelf__panel p {
+  margin: 0;
+  color: #fff;
+  font-size: 8.5px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.elpida-cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  padding: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.elpida-cover__title {
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1.1;
+  word-break: break-word;
+}
+
+.elpida-cover__dots {
+  width: 38%;
+  height: 4px;
+  border-radius: 2px;
+  opacity: 0.45;
+}
+
+.elpida-book-hero {
+  background: var(--elpida-purple);
+  border-bottom-left-radius: 70px 36px;
+  border-bottom-right-radius: 24px;
+  padding: 20px 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.elpida-book-hero__cover {
+  width: 170px;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.elpida-book-hero__cover .elpida-cover__title {
+  font-size: 22px;
+}
+
+.elpida-book-hero__pills {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.elpida-book-hero__pills button,
+.elpida-book-hero__pills span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: var(--elpida-green-header);
+  color: #fff;
+}
+
+.elpida-book-hero__pills button.on {
+  background: var(--elpida-lavender);
+}
+
+.elpida-book-title {
+  margin: 16px 20px 6px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--elpida-purple);
+}
+
+.elpida-book-desc {
+  margin: 0 28px 16px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.elpida-book-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 40px;
+  height: 44px;
+  border-radius: 24px;
+  background: var(--elpida-lavender);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.elpida-similar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 10px 24px 8px;
+}
+
+.elpida-similar a {
+  text-decoration: none;
+}
+
+.elpida-reader {
+  background-color: #2a7f78;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.07) 0 14px, transparent 15px),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.07) 0 20px, transparent 21px);
+  background-size: 90px 90px, 130px 130px;
+  min-height: 100vh;
+}
+
+.elpida-reader__bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.elpida-reader__bar-fill {
+  height: 100%;
+  background: #f7e04b;
+  transition: width 0.25s ease;
+}
+
+.elpida-reader__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.elpida-reader__page {
+  padding: 18px 40px 16px;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-reader__cover {
+  width: 100%;
+  max-width: 260px;
+  padding: 18px;
+}
+
+.elpida-reader__cover .elpida-cover__title {
+  font-size: 30px;
+}
+
+.elpida-reader__text {
+  background: rgba(240, 237, 218, 0.95);
+  border-radius: 16px;
+  padding: 22px 20px;
+  color: #1c1c1c;
+}
+
+.elpida-reader__text h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--elpida-purple);
+}
+
+.elpida-reader__text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.elpida-reader__nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.elpida-reader__nav button {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(240, 237, 218, 0.95);
+  color: var(--elpida-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-reader__nav button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ==========================================================
+   Timeline
+   ========================================================== */
+.elpida-feed {
+  padding: 6px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.elpida-post {
+  background: #fffaf7;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.elpida-post__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #1c1c1c;
+  margin-bottom: 10px;
+}
+
+.elpida-post__quote {
+  background: #222;
+  color: #f6a6c1;
+  border-radius: 8px;
+  padding: 24px 16px;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.elpida-post__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1c1c1c;
+}
+
+.elpida-post__image {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.elpida-post__caption {
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.elpida-post__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.elpida-post__actions button {
+  border: none;
+  background: none;
+  padding: 0;
+  display: flex;
+  color: #333;
+}
+
+.elpida-post__actions button.liked {
+  color: #e0243a;
+}
+
+.elpida-post__actions button.on {
+  color: var(--elpida-purple-header);
+}
+
+/* ==========================================================
+   Ciclo da violência
+   ========================================================== */
+.elpida-cycle-divider {
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+  margin: 4px 16px 10px;
+}
+
+.elpida-cycle {
+  background: var(--elpida-bg);
+  padding: 8px 0 18px;
+  color: #1c1c1c;
+}
+
+.elpida-cycle--dark {
+  background: #5f3b7d;
+  color: var(--elpida-bg);
+}
+
+.elpida-cycle__head {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  padding: 6px 16px 4px 0;
+}
+
+.elpida-cycle__head--flip {
+  flex-direction: row-reverse;
+  padding: 6px 0 4px 16px;
+}
+
+.elpida-cycle__art {
+  flex: 0 0 40%;
+  min-height: 170px;
+  background: #6b8cff;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elpida-cycle__head--flip .elpida-cycle__art {
+  border-radius: 20px 0 0 20px;
+}
+
+.elpida-cycle__label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: #7d55c7;
+}
+
+.elpida-cycle--dark .elpida-cycle__label,
+.elpida-cycle--dark .elpida-cycle__title {
+  color: #b7d3c6;
+}
+
+.elpida-cycle__title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #7d55c7;
+}
+
+.elpida-cycle__text {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.elpida-cycle__text--full {
+  padding: 0 18px;
+  margin-top: 10px;
+}
+
+/* ==========================================================
+   Páginas informativas
+   ========================================================== */
+.elpida-info {
+  padding: 6px 20px 24px;
+}
+
+.elpida-info__intro {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.elpida-info__section {
+  background: var(--elpida-bg);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.elpida-info__section h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--elpida-purple);
+}
+
+.elpida-info__section ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.elpida-info__section li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.elpida-info__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.elpida-info__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  border-radius: 24px;
+  background: var(--elpida-purple);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.elpida-info__btn--alt {
+  background: var(--elpida-green);
+}
+
+/* ==========================================================
+   Perfil (hero roxo com manchas verdes, como no Figma)
+   ========================================================== */
+.elpida-profile-hero {
+  position: relative;
+  background: var(--elpida-purple);
+  padding: 14px 18px 22px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.elpida-profile-hero__blob {
+  position: absolute;
+  background: var(--elpida-green-header);
+  border-radius: 50%;
+}
+
+.elpida-profile-hero__blob--l {
+  left: -46px;
+  top: 34px;
+  width: 92px;
+  height: 92px;
+}
+
+.elpida-profile-hero__blob--r {
+  right: -34px;
+  top: -34px;
+  width: 110px;
+  height: 110px;
+}
+
+.elpida-profile-hero__actions {
+  position: relative;
+  z-index: 2;
+  justify-content: flex-end;
+}
+
+.elpida-profile-hero__avatar {
+  position: relative;
+  z-index: 1;
+  width: 102px;
+  height: 102px;
+  margin: -2px auto 8px;
+  border-radius: 50%;
+  border: 3px solid var(--elpida-bg);
+  overflow: hidden;
+  display: flex;
+}
+
+.elpida-profile-hero__name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--elpida-bg);
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.elpida-profile-hero__meta {
+  position: relative;
+  z-index: 1;
+  margin: 2px 0 0;
+  color: #b7d3c6;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.elpida-profile-grid__new {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--elpida-green-header);
+  background: #e7ede9;
+  border: 3px dashed var(--elpida-green-header);
+}
+
+.elpida-profile-grid__new span {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.elpida-profile-grid__cover {
+  display: flex;
+  padding: 8px;
+  background: var(--elpida-purple-header);
+  text-decoration: none;
+}
+
+.elpida-profile-grid__cover .elpida-cover {
+  width: 100%;
+}
+
+.elpida-profile-grid__note {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #e7ede9;
+  color: #333;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.elpida-about {
+  padding: 16px 20px 24px;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.8;
+}
+
+.elpida-about p {
+  margin: 0;
+}
+
+.elpida-about__edit {
+  margin-top: 14px;
+  border: none;
+  border-radius: 20px;
+  background: var(--elpida-purple-header);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 10px 18px;
+}
+
+/* ==========================================================
+   Ajustes finais de acabamento
+   ========================================================== */
+.elpida-logo-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.elpida-auth-card {
+  min-height: 100vh;
+  padding-top: 1px;
+}
+
+.elpida-auth-card .elpida-logo-badge {
+  width: 142px;
+  height: 118px;
+  margin: 34px auto 10px;
+  border-radius: 22px;
+  background: #f7f2fa;
+  box-shadow: 0 5px 16px rgba(68, 23, 90, 0.13);
+  overflow: hidden;
+}
+
+.elpida-auth-card .elpida-title {
+  margin: 16px 0 26px;
+  text-align: center;
+}
+
+.elpida-auth-card--signup .elpida-title--signup {
+  margin: 74px 0 28px;
+  text-align: left;
+}
+
+.elpida-auth-card .elpida-btn {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.elpida-auth-card .elpida-btn-row {
+  align-items: stretch;
+}
+
+.elpida-auth-card .elpida-btn-sm {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.elpida-form-error {
+  margin: 6px 4px 0;
+  text-align: left;
+  display: block;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.elpida-form-error--box {
+  background: #fbe9e9;
+  border: 1px solid #e2b6b6;
+  border-radius: 12px;
+  padding: 9px 11px;
+  margin: -4px 0 14px;
+}
+
+.elpida-inline-link .elpida-link {
+  padding: 0;
+}
+
+.elpida-blob {
+  width: 104px;
+  height: 72px;
+  left: -24px;
+  bottom: -22px;
+  border-radius: 58% 42% 52% 48% / 58% 44% 56% 42%;
+  opacity: 0.48;
+}
+
+.elpida-blob--top-right {
+  top: -28px;
+  right: -26px;
+  width: 158px;
+  height: 126px;
+  border-radius: 0 0 0 72%;
+  opacity: 1;
+}
+
+.elpida-cover--image {
+  padding: 0;
+  background: transparent !important;
+}
+
+.elpida-cover__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.elpida-news-card__thumb {
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+.elpida-about__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.elpida-about__edit {
+  margin-top: 0;
+  width: 100%;
+}
+
+.elpida-about__delete {
+  min-height: 40px;
+  border: 1px solid #b24a55;
+  border-radius: 20px;
+  background: #fff4f4;
+  color: #a13939;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+/* Ícones seguem o mesmo desenho 2D/outline da barra inferior. */
+.elpida-app-screen svg,
+.elpida-card svg,
+.elpida-overlay svg {
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.elpida-icon-btn svg,
+.elpida-bottom-nav svg,
+.elpida-category svg,
+.elpida-drawer__item svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Alinhamento consistente dos controles das telas de autenticação. */
+.elpida-auth-card .elpida-field label {
+  margin-left: 2px;
+}
+
+.elpida-auth-card .elpida-btn-row + .elpida-bottom-text {
+  margin-top: 22px;
+}
+
+.elpida-profile-hero__blob--l {
+  left: -34px;
+  top: 52px;
+  width: 76px;
+  height: 76px;
+}
+
+.elpida-profile-hero__blob--r {
+  right: -24px;
+  top: -24px;
+  width: 88px;
+  height: 88px;
+}
+
+
+/* ==========================================================
+   Autenticação: formulário consistente e sem elementos tortos
+   ========================================================== */
+.elpida-auth-card {
+  min-height: 100vh;
+  padding: 1px 28px 44px;
+  overflow: hidden;
+}
+
+.elpida-auth-card .elpida-top-curve {
+  height: 150px;
+}
+
+.elpida-auth-card .elpida-logo-badge {
+  width: 126px;
+  height: 104px;
+  margin: 30px auto 18px;
+  border-radius: 22px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.elpida-auth-card .elpida-logo-badge .elpida-logo-image {
+  height: 88px;
+  width: auto;
+  max-width: 108px;
+}
+
+.elpida-auth-card .elpida-title,
+.elpida-auth-card--signup .elpida-title--signup {
+  margin: 8px 0 24px;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.elpida-auth-card--signup .elpida-top-curve {
+  height: 112px;
+}
+
+.elpida-auth-card--signup .elpida-blob--top-right {
+  width: 104px;
+  height: 86px;
+  top: -22px;
+  right: -18px;
+}
+
+.elpida-auth-card .elpida-field {
+  margin-bottom: 18px;
+}
+
+.elpida-auth-card .elpida-input-wrap {
+  min-height: 50px;
+}
+
+.elpida-auth-card .elpida-input-wrap input {
+  min-width: 0;
+}
+
+.elpida-auth-card .elpida-btn {
+  margin: 8px 0 18px;
+}
+
+.elpida-auth-card .elpida-divider {
+  margin: 18px 0;
+}
+
+.elpida-auth-card .elpida-bottom-text {
+  margin-top: 18px;
+}
+
+/* A mesma linguagem visual 2D/outline da barra inferior em todo o app. */
+.elpida-icon-2d,
+.elpida-app-screen svg,
+.elpida-card svg,
+.elpida-overlay svg {
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.elpida-bottom-nav .elpida-icon-2d {
+  width: 24px;
+  height: 24px;
+}
+
+/* Blobs menores e previsíveis: nunca cobrem campos ou botões. */
+.elpida-auth-card > .elpida-blob:not(.elpida-blob--top-right) {
+  width: 78px;
+  height: 54px;
+  left: -18px;
+  bottom: -12px;
+  opacity: .35;
+}
+
+.elpida-profile-hero__blob--l { width: 58px; height: 58px; left: -20px; top: 62px; }
+.elpida-profile-hero__blob--r { width: 64px; height: 64px; right: -18px; top: -16px; }
+
+/* Tela de configurações/conta */
+.elpida-settings-list {
+  display: grid;
+  gap: 10px;
+  padding: 0 18px 110px;
+}
+
+.elpida-settings-card {
+  width: 100%;
+  border: 1px solid rgba(95, 59, 125, .16);
+  border-radius: 18px;
+  background: #fff;
+  padding: 14px 16px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--elpida-text);
+  box-shadow: 0 3px 12px rgba(70, 38, 88, .07);
+}
+
+.elpida-settings-card__icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #f0e9f4;
+  color: var(--elpida-purple);
+}
+
+.elpida-settings-card__copy { flex: 1; min-width: 0; }
+.elpida-settings-card__title { margin: 0; font-size: 14px; font-weight: 800; }
+.elpida-settings-card__desc { margin: 3px 0 0; font-size: 11px; line-height: 1.4; color: #666; }
+.elpida-settings-card--danger { border-color: #e4b9be; background: #fff7f7; color: #9c3e47; }
+.elpida-settings-card--danger .elpida-settings-card__icon { background: #fde5e7; color: #a13939; }
+
+.elpida-account-badge {
+  margin: 0 18px 18px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #f5eff7;
+  color: var(--elpida-purple);
+  font-size: 12px;
+}
+
+@media (max-width: 393px) {
+  .elpida-auth-card { padding-left: 22px; padding-right: 22px; }
+}
