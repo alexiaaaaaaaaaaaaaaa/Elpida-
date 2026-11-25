@@ -50,13 +50,6 @@ src/
   utils/       cpf, image, places (Overpass), searchIndex, notifications, storage
 ```
 
-## Sobre a validação de CPF
-
-`isValidCpf()` em `src/utils/cpf.ts` implementa o algoritmo oficial dos dois dígitos verificadores da Receita
-Federal e rejeita sequências como `000.000.000-00` ou `111.111.111-11` (matematicamente "válidas" nesse
-algoritmo, mas nunca emitidas). Ele **não consulta uma base de dados real** (não existe API pública gratuita
-para isso) — então confirma que o número é estruturalmente um CPF válido, mas não confirma que aquele CPF
-específico foi de fato emitido a alguém. Isso é o padrão de validação usado na prática por formulários web.
 
 ## Sobre o Mapa (delegacias, hospitais, bombeiros)
 
