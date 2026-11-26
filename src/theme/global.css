@@ -1949,10 +1949,10 @@ a {
 }
 
 .elpida-auth-card .elpida-logo-badge {
-  width: 142px;
-  height: 118px;
+  width: 132px;
+  height: 132px;
   margin: 34px auto 10px;
-  border-radius: 22px;
+  border-radius: 50%;
   background: #f7f2fa;
   box-shadow: 0 5px 16px rgba(68, 23, 90, 0.13);
   overflow: hidden;
@@ -2121,18 +2121,18 @@ a {
 }
 
 .elpida-auth-card .elpida-logo-badge {
-  width: 126px;
-  height: 104px;
+  width: 132px;
+  height: 132px;
   margin: 30px auto 18px;
-  border-radius: 22px;
-  padding: 8px;
+  border-radius: 50%;
+  padding: 0;
   overflow: hidden;
 }
 
 .elpida-auth-card .elpida-logo-badge .elpida-logo-image {
-  height: 88px;
+  height: 92px;
   width: auto;
-  max-width: 108px;
+  max-width: 80px;
 }
 
 .elpida-auth-card .elpida-title,

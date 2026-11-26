@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Eye, EyeOff, Globe } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import Logo from '../components/Logo';
 import Icon2D from '../components/Icon2D';
@@ -115,7 +115,7 @@ const SignUpPage: React.FC = () => {
           onChange={(e) => setAcceptedTerms(e.target.checked)}
           id="terms"
         />
-        <label htmlFor="terms">Aceito os <a className="elpida-link" href="#">termos e condições</a> do aplicativo</label>
+        <label htmlFor="terms">Aceito os <Link className="elpida-link" to="/termos" target="_blank" rel="noopener noreferrer">termos e condições</Link> do aplicativo</label>
       </div>
 
       {info && <div className="elpida-form-error elpida-form-error--box" style={{ color: 'var(--elpida-purple)' }}>{info}</div>}
@@ -132,18 +132,6 @@ const SignUpPage: React.FC = () => {
       <button className="elpida-btn elpida-btn--primary" disabled={!canSubmit} onClick={handleSubmit}>
         Criar conta
       </button>
-
-      <div className="elpida-divider">Tente de outra forma</div>
-
-      <div className="elpida-btn-row">
-        <button className="elpida-btn-sm" type="button">
-          <Icon2D icon={Globe} size={17} />
-          Google
-        </button>
-        <button className="elpida-btn-sm" type="button" onClick={() => navigate('/login')}>
-          Entrar
-        </button>
-      </div>
 
       <div className="elpida-bottom-text">
         Já tem uma conta?{' '}

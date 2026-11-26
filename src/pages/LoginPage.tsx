@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Eye, EyeOff, Globe } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import Logo from '../components/Logo';
 import Icon2D from '../components/Icon2D';
@@ -94,10 +94,6 @@ const LoginPage: React.FC = () => {
       </button>
 
       <div className="elpida-btn-row">
-        <button className="elpida-btn-sm" type="button">
-          <Icon2D icon={Globe} size={17} />
-          Google
-        </button>
         <button className="elpida-btn-sm" type="button" onClick={() => navigate('/cadastro')}>
           Criar conta
         </button>

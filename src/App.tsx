@@ -24,6 +24,7 @@ import CycleOfViolencePage from './pages/CycleOfViolencePage';
 import InfoPage from './pages/InfoPage';
 import SettingsPage from './pages/SettingsPage';
 import AdminVideoPage from './pages/AdminVideoPage';
+import TermsPage from './pages/TermsPage';
 
 /** Tela de login já pula para o Início se a sessão estiver salva. */
 const RedirectIfAuthenticated: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -54,6 +55,7 @@ const AppRoutes: React.FC = () => (
       }
     />
     <Route path="/cadastro" element={<SignUpPage />} />
+    <Route path="/termos" element={<TermsPage />} />
     <Route path="/configurar-conta" element={<RequireAuth><AccountSetupPage /></RequireAuth>} />
 
     {/* Onboarding de segurança */}
